@@ -7,6 +7,8 @@
 #include "fileentry.h"
 #include "BloqueFolder.h"
 
+
+
 class DiscoVirtual
 {
     public:
@@ -31,6 +33,9 @@ class DiscoVirtual
         Archivo * archivo;
         MasterBlock * masterBlock;
         int tamanoDiscoVirtual;
+        int cantidadEntradas;
+
+        int hash(char *key);
 
         void copyEntries(list<FileEntry*> * origen, list<FileEntry*> * destino);
 };

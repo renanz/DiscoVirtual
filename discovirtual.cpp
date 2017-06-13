@@ -6,6 +6,7 @@ DiscoVirtual::DiscoVirtual(char * nombre, int tamDV)
     archivo->abrir();
     this->tamanoDiscoVirtual = tamDV;
     this->masterBlock = new MasterBlock(this->archivo, tamDV);
+    cantidadEntradas = (this->masterBlock->getCantBloques-2)/28;
 }
 
 DiscoVirtual * DiscoVirtual::crearDiscoVirtual(char* nombreArchivo)
@@ -137,3 +138,10 @@ void DiscoVirtual::setTamanoDiscoVirtual(int tamDV)
     this->tamanoDiscoVirtual = tamDV;
 }
 
+int DiscoVirtual::hash(char *key)
+{
+    int sum = 0;
+        for (int k = 0; k < strlen(key); k++)
+            sum = sum + int(key[k]);
+    return  sum % cantidadEntradas;
+}
